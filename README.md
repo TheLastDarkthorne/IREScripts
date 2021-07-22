@@ -1,2 +1,2 @@
 # IREScripts
-Scripties for IRE games! Mostly Achaea
+Mudlet scripties for IRE games! Mostly Achaea
