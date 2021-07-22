@@ -11,12 +11,12 @@
 				<name>Harvester</name>
 				<packageName></packageName>
 				<script>RoomEnv = {
-["Forest"] = {"ginger", "ginseng", "myrrh", "echinacea", "lobelia", "elm"}, -- "ginger""echinacea" lobelia"Lobelia and Elm "ginger" "" myrrh burdock here!
-["Garden"] = {"ginger", "ginseng", "myrrh", "echinacea", "lobelia", "elm"}, --  , "ginger""echinacea", And here too
-["Desert"] = {"pear"}, --Pear and Weed
+["Forest"] = {"ginger", "ginseng", "myrrh", "echinacea", "lobelia", "elm", "burdock"}, -- "ginger""echinacea" lobelia"Lobelia and Elm "ginger" "" myrrh burdock here!
+["Garden"] = {"ginger", "ginseng", "myrrh", "echinacea", "lobelia", "elm", "burdock"}, --  , "ginger""echinacea", And here too
+["Desert"] = {"pear", "weed"}, --Pear and Weed
 ["Grasslands"] = {"goldenseal", "slipper"}, -- Goldenseal and slipper
 ["Mountains"] = {"valerian"},
-["Jungle"] = {"kola", "skullcap"}, --Kuzu, Kola and Skullcap
+["Jungle"] = {"kola", "kuzu, "skullcap"}, --Kuzu, Kola and Skullcap
 ["Natural underground"] = {"bloodroot", "moss"}, -- Moss and bloodroot
 ["Hills"] = {"hawthorn", "bayberry"}, --Bayberry and Hawthorn
 ["Swamp"] = {"ash", "cohosh", "bellwort"}, --Ash, cohosh, bellwort
