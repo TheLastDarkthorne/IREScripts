@@ -388,13 +388,4 @@ end</script>
 		</ScriptGroup>
 	</ScriptPackage>
 	<KeyPackage />
-	<VariablePackage>
-		<HiddenVariables />
-		<Variable>
-			<name>antitheftmode</name>
-			<keyType>4</keyType>
-			<value>true</value>
-			<valueType>1</valueType>
-		</Variable>
-	</VariablePackage>
 </MudletPackage>
