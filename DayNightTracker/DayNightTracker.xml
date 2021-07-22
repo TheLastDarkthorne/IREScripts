@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<ScriptPackage>
+		<Script isActive="yes" isFolder="no">
+			<name>DaynightTracker</name>
+			<packageName></packageName>
+			<script>--Little daynight tracker for svo by TheLastDarkthorne
+function init_daynightTracker()
+  if not svo then return end
+  
+  function svo.daynightTracker_tag()
+    local daynight = tonumber(svo.me.gametime.daynight)
+    local moon ='🌙'
+    local sun ='🌞'
+    if daynight &lt;= 100 then
+      return sun
+    else
+      return moon
+    end
+    
+    return "--"
+  end
+  
+  svo.adddefinition("@daynighttracker", "svo.daynightTracker_tag()")
+end
+
+if svo and svo.adddefinition then init_daynightTracker() end
+if daynighttag then killAnonymousEventHandler(daynighttag) end
+daynighttag = registerAnonymousEventHandler("svo system loaded", init_daynightTracker)</script>
+			<eventHandlerList />
+		</Script>
+	</ScriptPackage>
+</MudletPackage>
