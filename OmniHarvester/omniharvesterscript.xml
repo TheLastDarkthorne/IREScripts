@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>OmniStuff</name>
+			<packageName>OmniStuff</packageName>
+			<script></script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>Harvester</name>
+				<packageName></packageName>
+				<script>RoomEnv = {
+["Forest"] = {"ginger", "ginseng", "myrrh", "echinacea", "lobelia", "elm", "burdock"}, -- "ginger""echinacea" lobelia"Lobelia and Elm "ginger" "" myrrh burdock here!
+["Garden"] = {"ginger", "ginseng", "myrrh", "echinacea", "lobelia", "elm", "burdock"}, --  , "ginger""echinacea", And here too
+["Desert"] = {"pear", "weed"}, --Pear and Weed
+["Grasslands"] = {"goldenseal", "slipper"}, -- Goldenseal and slipper
+["Mountains"] = {"valerian"},
+["Jungle"] = {"kola", "kuzu, "skullcap"}, --Kuzu, Kola and Skullcap
+["Natural underground"] = {"bloodroot", "moss"}, -- Moss and bloodroot
+["Hills"] = {"hawthorn", "bayberry"}, --Bayberry and Hawthorn
+["Swamp"] = {"ash", "cohosh", "bellwort"}, --Ash, cohosh, bellwort
+["Valley"] = {"sileris"},
+["Freshwater"] = {"kelp"},
+["River"] = {"kelp"},
+["Water"] = {"kelp"},
+["Ocean"] = {"kelp"},
+["Viscera"] = {"kelp"},
+};
+CurrentEnv = ""
+HarvestQueue = {
+};
+
+function harvestBegin(env)
+for i = 1,table.maxn(RoomEnv[env]) do
+table.insert(HarvestQueue, RoomEnv[env][i])
+end
+cecho("\n&lt;white&gt;[&lt;blue&gt;Harvesting&lt;white&gt;]&lt;grey&gt;: Commencing Plant Snatching!")
+enableTrigger("HarvestBal")
+pickPlants()
+end
+
+function pickPlants()
+	if HarvestQueue[1] == nil  then 
+		cecho("\n&lt;white&gt;[&lt;blue&gt;Harvesting&lt;white&gt;]&lt;grey&gt;: Finished Snatching Plants!")
+		disableTrigger("HarvestBal")
+	else
+	send("harvest " .. HarvestQueue[1])
+	table.remove(HarvestQueue,1)
+	end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<ScriptGroup isActive="yes" isFolder="yes">
+				<name>Omni_HarvesterRoomInfo</name>
+				<packageName>Omni_HarvesterRoomInfo</packageName>
+				<script></script>
+				<eventHandlerList />
+				<Script isActive="yes" isFolder="no">
+					<name>RoomInfo</name>
+					<packageName></packageName>
+					<script>function RoomInfo(events, args)
+ harvesting = {}
+ local info = gmcp.Room.Info
+
+ CurrentEnv = info.environment
+ CurrentArea = info.area
+
+end</script>
+					<eventHandlerList>
+						<string>gmcp.Room.Info</string>
+					</eventHandlerList>
+				</Script>
+			</ScriptGroup>
+		</ScriptGroup>
+	</ScriptPackage>
+</MudletPackage>

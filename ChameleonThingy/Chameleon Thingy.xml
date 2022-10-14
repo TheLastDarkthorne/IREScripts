@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+	<TriggerPackage>
+		<TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+			<name>Chameleon Thingy</name>
+			<script></script>
+			<triggerType>0</triggerType>
+			<conditonLineDelta>0</conditonLineDelta>
+			<mStayOpen>0</mStayOpen>
+			<mCommand></mCommand>
+			<packageName></packageName>
+			<mFgColor>#ff0000</mFgColor>
+			<mBgColor>#ffff00</mBgColor>
+			<mSoundFile></mSoundFile>
+			<colorTriggerFgColor>#000000</colorTriggerFgColor>
+			<colorTriggerBgColor>#000000</colorTriggerBgColor>
+			<regexCodeList />
+			<regexCodePropertyList />
+			<Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+				<name>Chameleon Thing</name>
+				<script>if ischameleoning then
+  svo.deleteLineP()
+--  eriLink2("Chameleon failed :( Trying to chameleon again! Clickey to toggle on/off!")  
+  cham()
+end</script>
+				<triggerType>0</triggerType>
+				<conditonLineDelta>0</conditonLineDelta>
+				<mStayOpen>0</mStayOpen>
+				<mCommand></mCommand>
+				<packageName></packageName>
+				<mFgColor>#ff0000</mFgColor>
+				<mBgColor>#ffff00</mBgColor>
+				<mSoundFile></mSoundFile>
+				<colorTriggerFgColor>#000000</colorTriggerFgColor>
+				<colorTriggerBgColor>#000000</colorTriggerBgColor>
+				<regexCodeList>
+					<string>The effect of your chameleon tattoo slowly fades, and you return to your own identity.</string>
+					<string>Attempting to pass as someone who is dormant or retired will be rather ineffective. Try someone else.</string>
+					<string>You caress your chameleon tattoo but before your face can complete the transformation</string>
+					<string>Newbies have enough to learn without worrying about you pretending to be one. Go and pester people of your own age.</string>
+					<string>Syntax for chameleon tattoo is:</string>
+				</regexCodeList>
+				<regexCodePropertyList>
+					<integer>3</integer>
+					<integer>3</integer>
+					<integer>2</integer>
+					<integer>3</integer>
+					<integer>2</integer>
+				</regexCodePropertyList>
+			</Trigger>
+		</TriggerGroup>
+	</TriggerPackage>
+	<TimerPackage />
+	<AliasPackage>
+		<AliasGroup isActive="yes" isFolder="yes">
+			<name>Chameleon Thingy</name>
+			<script></script>
+			<command></command>
+			<packageName></packageName>
+			<regex></regex>
+			<Alias isActive="yes" isFolder="no">
+				<name>Chameleon Thingy Alias</name>
+				<script>-- Initiate shenanigans!
+
+if not matches[2] then
+	if ischameleoning == true then
+    eriLink("Will chameleon someone else. Clickey to toggle on/off!")
+		cham()
+	elseif not ischameleoning then
+  	ischameleoning = true
+  	eriLink("Will chameleon someone right away! Clickey to toggle on/off!")
+		cham()
+	end
+end
+	
+if matches[2] == " on" then
+	ischameleoning = true 
+  eriLink("Enabled Auto-chameleoning. Clickey to toggle on/off!")
+	cham()
+ elseif matches[2] == " off" then
+	ischameleoning = false
+  eriLink2("Disabled Auto-chameleoning. Clickey to toggle on/off!")
+  svo.showprompt()
+end
+--echo(matches[2])</script>
+				<command></command>
+				<packageName></packageName>
+				<regex>^cham( (.*))?$</regex>
+			</Alias>
+		</AliasGroup>
+	</AliasPackage>
+	<ActionPackage />
+	<ScriptPackage>
+		<ScriptGroup isActive="yes" isFolder="yes">
+			<name>Chameleon Thingy</name>
+			<packageName></packageName>
+			<script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external scripts --
+-------------------------------------------------
+</script>
+			<eventHandlerList />
+			<Script isActive="yes" isFolder="no">
+				<name>Chameleon Thingy</name>
+				<packageName></packageName>
+				<script>--[[
+*** SVOF NDB AUTO CHAMELEON SCRIPTY ! ***
+]]
+
+
+--set this to false if you don't like colourful things, you grumpy you!
+local colourful = true
+
+-- Colourful gradient echoes for our echolinks! Or not -eyes you-
+function eriLink(...)
+  if colourful == true then
+    hechoLink("\n#791AFF[#FFFFFF Eri #791AFF]#FFFFFF: " .. colorGrad(... .. "\n", "BC21FF", "BC22FF", 1), [[echoclicky()]], "", true)
+  else
+    hechoLink("\n#791AFF[#FFFFFF Eri #791AFF]#FFFFFF: " .. ... .. "\n", [[echoclicky()]], "", true)
+  end
+end
+
+function eriLink2(...)
+  if colourful == true then
+    hechoLink("\n#791AFF[#FFFFFF Eri #791AFF]#FFFFFF: " .. colorGrad(... .. "\n", "BC22FF", "BC21FF", 2), [[echoclicky()]], "", true)
+  else
+    hechoLink("\n#791AFF[#FFFFFF Eri #791AFF]#FFFFFF: " .. ... .. "\n", [[echoclicky()]], "", true)
+  end
+end
+
+
+--Manages variable handling for when you clicky the echo links, providing MOAR colourful echoes if you like it!
+function echoclicky()
+  ischameleoning = not ischameleoning
+  if colourful == true then
+    hecho("\n#791AFF[#FFFFFF Eri #791AFF]#FFFFFF: " .. colorGrad("Auto-chameleoning is now ", "BC22FF", "BC21FF", 2) .. (ischameleoning and "#00FF00ON" or "#FF0000OFF") .. "#FFFFFF!\n")
+  else
+    hecho("\n#791AFF[#FFFFFF Eri #791AFF]#FFFFFF: Auto-chameleoning is now " .. (ischameleoning and "#00FF00ON" or "#FF0000OFF") .. "#FFFFFF!\n")
+  end
+  return 
+end
+
+--BEHOLD my shenanigans!
+function cham()
+	if ischameleoning then 
+  -- Retrieve data from the ndb database, if not possible, don't go beyond this point why waste your time?!
+  	local data = db:fetch_sql(ndb.db.people, [[SELECT "name" FROM 'people';]])
+    if not data then return end
+  
+  	--Make an empty name list
+  	local names = {}
+  	local z=0 -- counting variable for the 'for' loop.
+  	
+  	--populate the list with all the names!
+  	  for i = 1, #data do
+      if data[i].name ~= "" and data[i].name ~= gmcp.Char.Name.name and ndb.isimmortal(data[i].name) == false --[[and ndb.ismhaldorian(data[i].name) == true]] then
+  		--[[ 
+      ^ Cause you don't want to chameleon as no one, chameleoning as yourself will just remove the effect, 
+      and you don't want to chameleon as an immortal either, that might get you fried!
+  		You can uncomment and change the ndb.ismhaldorian to ndb.is&lt;whatever&gt; to match a city. I might include config stuffs for this later
+      but I'm lazy so whatevers
+  		]]
+      
+  			z=z+1 -- counting counting tick tick
+  			
+        names[z] = data[i].name 
+  			-- ^ if the name in question meets the conditions above, THEY ARE ON THE LIST!
+  		end
+  	end
+  
+   --Pickey a random name from the names list and chameleon as that person.
+  	local which = math.random(#names)
+  	send("queue add eqbal touch chameleon " ..names[which],false)
+		
+	else 
+	return end
+end</script>
+				<eventHandlerList />
+			</Script>
+			<Script isActive="yes" isFolder="no">
+				<name>ColorGrad</name>
+				<packageName></packageName>
+				<script>-- ColorGrad script by Tydas of Achaea!
+--(It is really very lovely you should use it!)
+
+-- Take in a string to colorize and two hexidecimals in string format
+-- str     : string to colorize
+-- l_color : string, hex format "RRGGBB", color for leftmost char
+-- r_color : string, hex format "RRGGBB", color for rightmost char
+-- type    : int, gradient type, 0 is RGB (d), 1 is HSV, 2 is inverse HSV
+-- Return  : a string such that hecho will display the original string
+--    colored so that it fades from the leftmost character being
+--    l_color to the rightmost character being r_color, producing as
+--    smooth a gradient as possible, in the type requested.
+
+function colorGrad(str, l_color, r_color, type)
+	type = type or 0
+	product = ""
+
+	-- extract RGB values
+	l_r = tonumber(string.sub(l_color, 1, 2), 16)
+	l_g = tonumber(string.sub(l_color, 3, 4), 16)
+	l_b = tonumber(string.sub(l_color, 5, 6), 16)
+
+	r_r = tonumber(string.sub(r_color, 1, 2), 16)
+	r_g = tonumber(string.sub(r_color, 3, 4), 16)
+	r_b = tonumber(string.sub(r_color, 5, 6), 16)
+
+	if type == 0 then -- RGB Gradient
+
+		-- The rate of change of color from each character to the next
+		m_r = (r_r - l_r) / (#str -1)
+		m_g = (r_g - l_g) / (#str -1)
+		m_b = (r_b - l_b) / (#str -1)
+
+		-- The starting color info
+		b_r = l_r
+		b_g = l_g
+		b_b = l_b
+
+		-- Perform the gradient per character
+		for i = 1, #str do
+			f_r = string.format("%x", m_r * (i-1) + b_r)
+			if #f_r &lt; 2 then f_r = "0"..f_r end
+
+			f_g = string.format("%x", m_g * (i-1) + b_g)
+			if #f_g &lt; 2 then f_g = "0"..f_g end
+
+			f_b = string.format("%x", m_b * (i-1) + b_b)
+			if #f_b &lt; 2 then f_b = "0"..f_b end
+
+			product = product.."|c"
+			product = product..f_r
+			product = product..f_g
+			product = product..f_b
+			product = product..string.sub(str, i, i)
+		end
+
+	else -- HSV Gradients, both normal and Inverse
+		l_h, l_s, l_v = RGBtoHSV(l_r, l_g, l_b)
+		r_h, r_s, r_v = RGBtoHSV(r_r, r_g, r_b)
+
+		-- Decide between standard (clockwise) or inverse (anti-clockwise)
+		if type == 1 then -- standard
+			-- We want to go clockwise along the color wheel, increasing l_h until we get to r_h
+			h_delta = r_h - l_h
+			if h_delta &lt; 0 then
+				h_delta = h_delta + 360
+			end
+			h_delta = h_delta / (#str - 1)
+
+			s_delta = (r_s - l_s) / (#str - 1)
+			v_delta = (r_v - l_v) / (#str - 1)
+
+			for i = 1, #str do
+				n_r, n_g, n_b = HSVtoRGB(l_h + (h_delta * (i-1)), l_s + (s_delta * (i-1)), l_v + (v_delta * (i-1)))
+				n_r = string.format("%x", n_r)
+				n_g = string.format("%x", n_g)
+				n_b = string.format("%x", n_b)
+				if #n_r &lt; 2 then n_r = "0"..n_r end
+				if #n_g &lt; 2 then n_g = "0"..n_g end
+				if #n_b &lt; 2 then n_b = "0"..n_b end
+
+				product = product.."|c"
+				product = product..n_r
+				product = product..n_g
+				product = product..n_b
+				product = product..string.sub(str, i, i)
+			end
+		elseif type == 2 then -- inverse
+			h_delta = l_h - r_h
+			if h_delta &lt; 0 then
+				h_delta = h_delta + 360
+			end
+			h_delta = h_delta / (#str - 1)
+
+			s_delta = (l_s - r_s) / (#str - 1)
+			v_delta = (l_v - r_v) / (#str - 1)
+
+			for i = 1, #str do
+				n_r, n_g, n_b = HSVtoRGB(l_h - (h_delta * (i-1)), l_s - (s_delta * (i-1)), l_v - (v_delta * (i-1)))
+				n_r = string.format("%x", n_r)
+				n_g = string.format("%x", n_g)
+				n_b = string.format("%x", n_b)
+				if #n_r &lt; 2 then n_r = "0"..n_r end
+				if #n_g &lt; 2 then n_g = "0"..n_g end
+				if #n_b &lt; 2 then n_b = "0"..n_b end
+
+				product = product.."|c"
+				product = product..n_r
+				product = product..n_g
+				product = product..n_b
+				product = product..string.sub(str, i, i)
+			end
+		end
+		
+	end
+	return product
+end
+
+
+function RGBtoHSV(r, g, b)
+	r = r / 255
+	g = g / 255
+	b = b / 255
+
+	c_max = (r &gt; g) and r or g
+
+	c_max = (c_max &gt; b) and c_max or b
+
+	c_min = (r &lt; g) and r or g
+	c_min = (c_min	 &lt; b) and c_min or b
+
+	delta = c_max - c_min
+
+
+	-- Calculate hue
+	if delta == 0 then
+		h = 0
+	elseif r == c_max then
+		h = 60 * (((g - b) / delta) % 6)
+	elseif g == c_max then
+		h = 60 * (((b - r) / delta) + 2)
+	else
+		h = 60 * (((r - g) / delta) + 4)
+	end
+	if h &lt; 0 then
+		h = h + 360
+	end
+
+	-- Calculate Saturation
+	if c_max == 0 then
+		s = 0
+	else
+		s = delta / c_max
+	end
+
+	v = c_max
+
+	return h, s, v
+	
+end
+
+
+function HSVtoRGB(h, s, v)
+
+	if h &lt; 0 then
+		h = h + 360
+	elseif h &gt; 360 then
+		h = h - 360
+	end
+
+	if h == 360 then
+		h = 0
+	end
+
+	C = v * s
+
+	X = C * (1 - math.abs( (h/60) % 2 - 1 ))
+
+	m = v - C
+	
+	if h &lt; 60 then
+		r, g, b = C, X, 0
+	elseif h &lt; 120 then
+		r, g, b = X, C, 0
+	elseif h &lt; 180 then
+		r, g, b = 0, C, X
+	elseif h &lt; 240 then
+		r, g, b = 0, X, C
+	elseif h &lt; 300 then
+		r, g, b = X, 0, C
+	else
+		r, g, b = C, 0, X
+	end
+
+	R = math.floor((r + m) * 255 + 0.5)
+	G = math.floor((g + m) * 255 + 0.5)
+	B = math.floor((b + m) * 255 + 0.5)
+
+	return R, G, B
+
+end</script>
+				<eventHandlerList />
+			</Script>
+		</ScriptGroup>
+	</ScriptPackage>
+	<KeyPackage />
+</MudletPackage>
